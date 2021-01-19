@@ -4,7 +4,12 @@
   "description": "interview in MVend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seeding": "npx sequelize-cli db:seed:all",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "migrateDB": "npx sequelize-cli db:migrate:undo:all && npm run migrate && npm run seeding",
+    "build": "babel src --out-dir dist --source-maps inline --copy-files",
+    "start": "npm run migrateDB && npm run build && node --require @babel/polyfill ./dist/app.js",
     "dev": "nodemon --exec babel-node ./src/app.js"
   },
   "repository": {
