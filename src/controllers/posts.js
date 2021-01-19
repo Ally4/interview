@@ -10,14 +10,14 @@ class posts {
   static async createPost(req, res) {
     try {
       const { title, content } = req.body;
-      const posted = await Post.create({
+      const post = await Post.create({
         title,
         content,
       });
       return res.status(201).json({
         status: 201,
         message: 'Your post have been recorded successfully',
-        data: posted,
+        data: post,
       });
     } catch (error) {
       return res.status(500).json({
@@ -25,6 +25,15 @@ class posts {
         message: error,
       });
     }
+  }
+
+  static async getposts(req, res) {
+    const posted = await Post.findAll();
+    return res.status(200).json({
+      status: 200,
+      message: 'here are the posts which have been created',
+      data: posted,
+    });
   }
 }
 
