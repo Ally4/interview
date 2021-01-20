@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 import Models from '../database/models';
 
 dotenv.config();
@@ -60,9 +61,12 @@ class users {
           message: 'the password is not right',
         });
       }
+      const payload = { email, name: find.name };
+      const token = jwt.sign(payload, process.env.THE_KEY);
       return res.status(200).json({
         status: 200,
         message: 'You loggedin successfully',
+        token,
       });
     } catch (error) {
       return res.status(500).json({
