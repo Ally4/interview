@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import Models from '../database/models';
 
