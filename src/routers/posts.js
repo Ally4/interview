@@ -7,6 +7,6 @@ const router = Router();
 
 router.post('/api/v1/create-post', middleware, postValidationError, userPost.createPost);
 
-router.get('/api/v1/get-posts', middleware, userPost.getposts);
+router.get('/api/v1/get-posts', userPost.getposts);
 
 export default router;
