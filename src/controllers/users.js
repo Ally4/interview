@@ -26,6 +26,8 @@ class users {
         email,
         password,
       });
+
+      // do not declare a value you are not going to use, like above, its better to use start straight from await
       return res.status(201).json({
         status: 201,
         message: 'the user have been registered',
